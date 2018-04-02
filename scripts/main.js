@@ -150,6 +150,35 @@ $(document).ready(function() {
       $('#clicks').append(getCat.clicks);
 
       $('#admin-form').addClass('hidden');
+      $('#cat-list').html('');
+
+      for(var i = 0; i < catList.length; i++) {
+         $('#cat-list').append('<li>'+catList[i].name+'</li>');
+      }
+
+      $('#cat-list li').click(function(e) {
+        for(var i = 0; i < catList.length; i++) {
+         if(catList[i].name === e.target.innerHTML) {
+           organization.setCurrentCat(catList[i]);
+         }
+       }
+        var getCat = organization.getCurrentCat();
+
+        $('#name').html('');
+        $('#clicks').html('');
+        $('#clicks').append(getCat.clicks);
+        $('#cat-image').attr('src','');
+
+        $('#name').append(getCat.name);
+        $('#cat-image').attr('src',getCat.img);
+
+        var name = getCat.name;
+        var clicks = getCat.clicks;
+
+        $('#input-name').val(name);
+        $('#input-clicks').val(clicks);
+
+      });
 
       e.preventDefault();
 
